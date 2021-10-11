@@ -9,7 +9,7 @@ import pickle
 
 # Load the model and dictvect
 
-model_file = 'model1.bin'
+model_file = 'model2.bin'
 dictvec_file = 'dv.bin'
 
 with open(model_file,'rb') as f_in: #read binary
