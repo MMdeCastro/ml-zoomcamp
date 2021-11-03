@@ -7,11 +7,13 @@ The classification goal is to predict if the client will subscribe (yes/no) a fi
 DATA
 
 Original dataset: [UCI Machine learning repository](https://archive.ics.uci.edu/ml/datasets/Bank%2BMarketing)
+
 Here we use a subset of the dataset dowloaded from [Kaggle](https://www.kaggle.com/janiobachmann/bank-marketing-dataset).
+
 Citation: _A Data-Driven Approach to Predict the Success of Bank Telemarketing_. S. Moro, P. Cortez and P. Rita., Decision Support Systems, Elsevier, 62:22-31, June 2014
 
 
-## Content 
+## Folder content 
 
 <ul>
 <li> bank.csv -> the dataset </li>
@@ -22,29 +24,35 @@ Citation: _A Data-Driven Approach to Predict the Success of Bank Telemarketing_.
 <li> predict_test_deposite.py -> output testing locally </li>
 <li> pipenv and pipenv.lock -> for the virtual environment using pipenv </li>
 <li> Dockerfile -> of a Docker container </li>
-<li> NEW requirements.txt and Procfile for Heroku deployment </li> 
 </ul>
 
 ## Deployment of model
 
-To deploy this model with:
+Open the web server by running:
 
-+ gunicorn, please use: gunicorn --bind 0.0.0.0:9696 predict_deposit:ap
-+ waitress, please use: waitress-serve --listen=0.0.0.0:9696 predict_deposit:app
++ gunicorn --bind 0.0.0.0:9696 predict_deposit:app
 
-it will open the web server. Test it by running in other shell: python predict_test_deposit.py. Close the web server with 'Ctrl + c'.
+(use 'waitress' instead of 'gunicorn' if you are in Windows).
+
+The data of a new customer are written in 'predict_test_deposit.py'. Test the deployment by running it in other shell: 
+
++ python predict_test_deposit.py. 
+
+The output (if that client will open a deposit or not and the probability) will be written in the shell.
+
+Close the web server with 'Ctrl + c'.
 
 ## Virtual Environment 
 
 Pipenv creates an enviroment with the name of the current folder. 
 
-+ Install 'pipenv' with 'pip install pipenv'.
-+ To activate the environment run 'pipenv shell' in shell.
-+ When then environment is activated, install everything using 'pipenv' instead of 'pip', for instance:
++ Install 'pipenv' running 'pip install pipenv' in shell.
++ Activate the environment running 'pipenv shell' in shell.
++ When then environment is activated, install everything using 'pipenv' instead of 'pip', for this project:
 
 pipenv install numpy scikit-learn==1.00 xgboost flask gunicorn
 
-+ The Pipfile records what you have installed (thus only run the installation once) and in the Piplock file are the packages checksums.
++ The Pipfile records what you have installed (thus only run the packages installation once) and in the Pipfile.lock are the packages checksums.
 + Close the environment with 'Crt + d'
 
 To use the environment, run 'pipenv shell' and deploy the model as said in the section above.
