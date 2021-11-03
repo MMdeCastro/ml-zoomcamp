@@ -22,7 +22,7 @@ Citation: _A Data-Driven Approach to Predict the Success of Bank Telemarketing_.
 <li> train_deposit.py -> final model training and saving with pickle </li>
 <li> predict_deposit.py -> model loading and web service deployment</li>
 <li> predict_test_deposite.py -> output testing locally </li>
-<li> pipenv and pipenv.lock -> for the virtual environment using pipenv </li>
+<li> Pipfile and Pipfile.lock -> for the virtual environment using pipenv </li>
 <li> Dockerfile -> of a Docker container </li>
 </ul>
 
@@ -57,13 +57,15 @@ pipenv install numpy scikit-learn==1.00 xgboost flask gunicorn
 
 To use the environment, run 'pipenv shell' and deploy the model as said in the section above.
 
-## Docker
+## Docker container
 
-Create a Docker image locally instead by running in shell:
+Create a Docker image locally by running in shell (the enviroment does not need to be activated):
 
 'docker run -it --rm --entrypoint=bash python:3.8.12-slim'
 
-The Dockerfile is this folder installs python, runs pipenv and its dependencies, runs the predict_deposit.py script to open the web server and the xgboost model and deploys it using gunicorn
+Exit with 'Ctrl + d'.
+
+The Dockerfile is this folder installs python, runs pipenv to install packages and dependencies, runs the predict_deposit.py script to open the web server and the xgboost model and deploys it using gunicorn
 
 ~~~~
 FROM python:3.8.12-slim
@@ -83,7 +85,7 @@ EXPOSE 9696
 ENTRYPOINT ["gunicorn", "--bind 0.0.0.0:9696", "predict_deposit:app"]
 ~~~~
 
-+ Build the docker container by running: 
++ Build the docker container by running in normal shell (not in the container shell): 
 
 docker built -t docker-deposit . 
 
