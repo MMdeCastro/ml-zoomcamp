@@ -1,4 +1,4 @@
-# Project description 
+# Bank Marketing: project description 
 
 GOAL 
 
@@ -16,7 +16,7 @@ Citation: _A Data-Driven Approach to Predict the Success of Bank Telemarketing_.
 ## Folder content 
 
 <ul>
-<li> bank.csv -> the dataset </li>
+<li> bank.csv -> dataset </li>
 <li> bank_marketing.ipynb -> jupyter notebook with the Exploratory Data Analysis and Model selection </li>
 <li> bank_marketing_with_outputs.ipynb -> same notebook but with cell outputs (it might take a bit to render here) </li>
 <li> train_deposit.py -> final model training and saving with pickle </li>
@@ -26,7 +26,7 @@ Citation: _A Data-Driven Approach to Predict the Success of Bank Telemarketing_.
 <li> Dockerfile -> of a Docker container </li>
 </ul>
 
-## Deployment of model
+## Model deployment
 
 Open the web server by running:
 
@@ -42,26 +42,33 @@ The output (if that client will open a deposit or not and the probability) will 
 
 Close the web server with 'Ctrl + c'.
 
-## Virtual Environment 
+## Virtual environment 
 
 Pipenv creates an enviroment with the name of the current folder. 
 
-+ Install 'pipenv' running 'pip install pipenv' in shell.
-+ Activate the environment running 'pipenv shell' in shell.
-+ When then environment is activated, install everything using 'pipenv' instead of 'pip', for this project:
+Install 'pipenv' running in shell:
++ 'pip install pipenv'
 
-pipenv install numpy scikit-learn==1.00 xgboost flask gunicorn
++Activate the environment running in shell:
++ 'pipenv shell' in shell.
 
-+ The Pipfile records what you have installed (thus only run the packages installation once) and in the Pipfile.lock are the packages checksums.
-+ Close the environment with 'Crt + d'
+When then environment is activated, install everything using 'pipenv' instead of 'pip', for this project:
+
++ pipenv install numpy scikit-learn==1.00 xgboost flask gunicorn
+
+The Pipfile records what you have installed (thus only run the packages installation once) and in the Pipfile.lock are the packages checksums.
+
+Close the environment with 'Crt + d'
 
 To use the environment, run 'pipenv shell' and deploy the model as said in the section above.
 
 ## Docker container
 
-Create a Docker image locally by running in shell (the enviroment does not need to be activated):
+We do not need to install packages, activate environments, train models,... everytime we want to know if a new customer will open a fix term deposit or not. We can skip the former sections using a Docker container.
 
-'docker run -it --rm --entrypoint=bash python:3.8.12-slim'
+First, create a Docker image locally by running in shell (the enviroment does not need to be activated):
+
++ 'docker run -it --rm --entrypoint=bash python:3.8.12-slim'
 
 Exit with 'Ctrl + d'.
 
@@ -85,21 +92,21 @@ EXPOSE 9696
 ENTRYPOINT ["gunicorn", "--bind 0.0.0.0:9696", "predict_deposit:app"]
 ~~~~
 
-+ Build the docker container by running in normal shell (not in the container shell): 
+Build the docker container by running in normal shell (not in the container shell): 
 
-docker built -t docker-deposit . 
++ docker built -t docker-deposit . 
 
 (the last point means 'here', i.e., run it in the environment folder).
 
-+ Run the docker container with: 
+Run the docker container with: 
 
-docker run -it -rm -p 9696:9696 docker-deposit 
++ docker run -it -rm -p 9696:9696 docker-deposit 
 
 and the model will be deployed and ready to use.
 
-To send a request, open a new shell in the enviroment directory and directly run:
+To send a new request, open a new shell in the enviroment directory and directly run:
 
-python predict_test_deposit.py
++ python predict_test_deposit.py
 
 and you will see if the customer will open a fix term deposit or not and its probability.
 
