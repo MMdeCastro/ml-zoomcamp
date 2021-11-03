@@ -49,7 +49,7 @@ Pipenv creates an enviroment with the name of the current folder.
 Install 'pipenv' running in shell:
 + 'pip install pipenv'
 
-+Activate the environment running in shell:
+Activate the environment running in shell:
 + 'pipenv shell' in shell.
 
 When then environment is activated, install everything using 'pipenv' instead of 'pip', for this project:
@@ -110,4 +110,4 @@ To send a new request, open a new shell in the enviroment directory and directly
 
 and you will see if the customer will open a fix term deposit or not and its probability.
 
-Close the container run with 'Ctrl + c'.
+Close the container with 'Ctrl + c'.
