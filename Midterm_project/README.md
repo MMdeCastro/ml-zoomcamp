@@ -96,3 +96,11 @@ docker built -t docker-deposit .
 docker run -it -rm -p 9696:9696 docker-deposit 
 
 and the model will be deployed and ready to use.
+
+To send a request, open a new shell in the enviroment directory and directly run:
+
+python predict_test_deposit.py
+
+and you will see if the customer will open a fix term deposit or not and its probability.
+
+Close the container run with 'Ctrl + c'.
