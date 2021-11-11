@@ -6,7 +6,7 @@ This repo hosts the solutions of the excersises of the Machine Learning course o
 + Session 4: Evaluation Metrics for Classification (27 September 2021)
 + Session 5: Deploying Machine Learning Models (04 October 2021)
 + Session 6: Decision Trees and Ensemble Learning (11 October 2021)
-+ Midterm Project (Session 7, 18 October 2021)
++ Session 7: Midterm Project (18 October 2021)
 + Session 8: Neural Networks and Deep Learning (01 November 2021)
 + Session 9: Serverless Deep Learning (08 November 2021)
 + Session 10: Kubernetes and TensorFlow-Serving (15 November 2021)
