@@ -12,6 +12,7 @@ This repo hosts the solutions of the excersises of the Machine Learning course o
 + Session 10: Kubernetes and TensorFlow-Serving 
 + Session 11: Kubeflow and KFServing 
 + Session 12: Capstone Project 
-+ Article (January 2022)
++ Session 13: Article
++ Session 14: Third Project
 
 More info here: https://github.com/alexeygrigorev/mlbookcamp-code/tree/master/course-zoomcamp
