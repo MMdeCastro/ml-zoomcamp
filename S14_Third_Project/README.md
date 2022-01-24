@@ -2,7 +2,7 @@
  
 Goal
 
-We want to predict the risk of suffering a heart failure on patients by knowning if they suffer hypertension, diabetes, high cholesterol levels,... and other features as age or sex considered as potential risk factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
+We want to predict the risk of suffering a heart failure on patients by knowning if they suffer hypertension, diabetes, high cholesterol levels,... and other features, as age or sex, which are considered as potential risk factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
 
 Method
 
@@ -14,17 +14,17 @@ We use the dataset available in the Kaggle database: Kaggle Heart Failure Predic
 
 Clone the repo to your computer and navigate to this project folder (see the folder content below). 
 
-Beside the dependencies indicated in the `requirements.txt` file (we will show how to install them below), you need to have installed:
-+ [Python](https://www.python.org/downloads/),
-+ [Jupyter](https://jupyter.org/install), 
-+ [Jupyter Nbextensions](https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/install.html) and the "Collapsible headings" enabled (under Nbextensions in the Jupyter toolbar), and
-+ Docker, in Ubuntu one just run the following in a shell:
+Beside the dependencies indicated in the `environment.yml` file (we will show how to install them below), you need to have installed:
++ [miniconda](https://docs.conda.io/en/latest/miniconda.html) or a bigger `conda` version, all of them already contain `Python`, the programming language we will use, and [pip](https://pip.pypa.io/en/stable/installation/), a package manager we will need
++ [pipenv](https://pypi.org/project/pipenv/) to create the environment for the Docker container, and
++ `Docker`, for the containarization, in Ubuntu one just run the following in a shell:
 
 + `sudo apt-get install docker.io`
 
 ## Folder content 
 
 <ul>
+<li> `environment.yml` -> the file with the packages we need 
 <li> `heart.csv` -> the dataset we use to train the models</li>
 <li> `Heart_Failure.ipynb` -> the Jupyter Notebook with the Exploratory Data Analysis and the Model Selection </li>
 <li> `train.py` -> to train the final model and save it with pickle to the file model_RF_t=04.bin</li>
@@ -38,53 +38,51 @@ Beside the dependencies indicated in the `requirements.txt` file (we will show h
 
 ## Virtual environment 
 
-Pipenv creates an enviroment with the name of the current folder. 
+In a terminal or bash shell (if you are in Linux or Mac, or in the Anaconda prompt if you are in Windows), navigate to the folder where you cloned the Heart Failure Prediction project and run:
 
-Install 'pipenv' running in shell:
++ `conda env create -f environment.yml`
 
-+ `pip install pipenv`
+and the packages we need will be installed.
 
-Activate the environment running in shell:
+To activate this environment, use
 
-+ `pipenv shell`
++ `conda activate heart`
 
-The packages indicated in the Pipfile provided in this folder will be installed in your computer. In case you would like to add other packages, install them using 'pipenv' instead of just 'pip'. For instance, for this project the Pipfile and Pipfile.lock (with the packages checksums) were created by running in shell (but you do not have to run this command):
+To deactivate an active environment, use
 
-+ `pipenv install -r requirements.txt` 
++ `conda deactivate`
 
-Next time you want to active the environment, just run 'pipenv shell'. Go out of the environment with 'Crt + d' (you do not need to have it activate when using the containerization explained in the last section).
+## Have a look to the data exploration and model selection in the Jupyter Notebook
 
-## Check the data exploration and model selection
-
-Once the environment is activated by `pipenv shell`, run in the shell:
+Once the 'heart' `conda` environment is activated, run in the shell:
 
 + `jupyter notebook` 
 
-and Jupyter will open in your browser, then click on the notebook `Heart_Failure.ipynb`. 
+and Jupyter will open in your browser, enable 'Collapsible headings' in the Nbextensions menu (see the Jupyter toolbar) and then click on the Jupyter Notebook `Heart_Failure.ipynb`. It will open in your browser. Then follow the instructions in the Jyputer Notebook. 
 
-When you are finished with the notebook, press 'Quit' in the Jupyter (top right corner) or 'Ctrl + c' in the shell, and Jupyter will be closed.
+When you are finished with the notebook, press 'Quit' in the Jupyter (top right corner) or `Ctrl + c` in the shell, and Jupyter will be closed.
 
 ## Generate the model file
 
-With the environment activated, run in the shell:
+Everything in the following will take place wth the `conda` environment activated, and still in the folder where you cloned the Heart Failure Prediction project, run in the shell:
 
 + `python train.py`
 
-and a file with name `model_RF_t=04.bin` comprising the Random Forest model with decision threshold 0.4 we selected as best performer (see `Heart_Failure.ipynb`).
+and in your project folder, a file with name `model_RF_t=04.bin` (it occupies about 277kB) comprising the Random Forest model (with decision threshold 0.4) that we selected as best performer (see `Heart_Failure.ipynb`), will be created.
 
 ## Apply the model in the web service
 
-Open a terminal in your computer, navigate to the folder where you cloned this folder, and run the web server typing:
+Run the web server typing:
 
 + `gunicorn --bind 0.0.0.0:9696 predict:app`
 
-(use 'waitress' instead of 'gunicorn' if you are in Windows).
+(use `waitress` instead of `gunicorn` if you are in Windows).
 
 The data of a new patient are written in 'predict_test.py'. Test the deployment by running the script in other shell: 
 
 + `python predict_test.py` 
 
-The shell output will tell you if that patient is in risk of suffering a heart failure or not.
+The shell output will tell you if that new patient is in risk of suffering a heart failure or not. Modify the info in `predict_test.py` to simulate different new patients.
 
 Close the web server with 'Ctrl + c'.
 
@@ -94,7 +92,21 @@ We do not need to install packages, activate environments, train models,... ever
 
 + `sudo apt-get install docker.io`
 
-First, create a Docker image locally by running in shell (the enviroment does not need to be activated):
+A `Pipfile` and a `Pipfile.lock` are already in the folder you cloned. Here we explain how we have created that files, therefore you do not have to reproduce the following 2 command lines. We have used `Pipenv` to create the `Pipfile` and the `Pipfile.lock` that record the info of the packages we need to have inside the container. 
+
+We activated the `pipenv` environment (it takes the name of the project folder you are) by running in the folder shell (inside the `conda` environment):
+
++ `pipenv shell` (you do not have to run this because you already have the files)
+
+and then we installed the packages we need in the container by running:
+
++ `pipenv install numpy scikit-learn==1.00 flask gunicorn` (you do not have to run this because you already have the files)
+
+and we went out of the `pipenv` environment with 'Crt + d'.
+
+With the `Pipfile` and `Pipfile.lock` we are ready to create a Docker image, please, follow the step below:
+
+Run in the shell (the enviroment does not need to be activated):
 
 + `docker run -it --rm --entrypoint=bash python:3.8.12-slim`
 
@@ -102,7 +114,7 @@ That will open a container shell (the `-it` tag is to acces the container from t
 
 Exit the container shell with `Ctrl + d`.
 
-The Dockerfile is this folder installs python, runs pipenv to install packages and dependencies, runs the predict.py script to open the web server and deploys it using gunicorn
+The Dockerfile is this folder installs `Python`, runs `pipenv` to install packages and dependencies, runs the `predict.py` script to open the web server and deploys it using `gunicorn` (now it does not matter anymore if you are in Windows, no need to replace `gunicorn` with `waitress` because inside the container your native OS does not matter).
 
 Build the docker container by running in normal shell (not in the container shell): 
 
