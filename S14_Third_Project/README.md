@@ -4,11 +4,11 @@
 
 Goal
 
-We want to predict the risk of suffering a heart failure on patients by knowning if their blood presure, diabetes, cholesterol,... levels and other features, as age or sex, which are considered as potential risk factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
+We want to predict the risk of suffering a heart failure on patients by knowing their blood presure, diabetes, cholesterol,... levels and other features, as age or sex, which are considered as relevant factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
 
 Method
 
-We will automate the task using the most popular classification models. Most of the work is related to the data preparation, the tuning of the model parameters, and the evaluation of the model performance. Find more info in the `Heart_Failure.ipynb` Jupyter Notebook.
+We will automate the task using the most popular classification models. Most of the work is related to the data preparation, the tuning of the model parameters, and the evaluation of the model performance. Find more info in the `Heart_Failure.ipynb` Jupyter Notebook (click on the nbviewer icon above for a faster renderization).
 
 Data
 
