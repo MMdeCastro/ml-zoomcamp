@@ -19,6 +19,7 @@ Clone the repo to your computer and navigate to this project folder (see the fol
 You need to have installed:
 + [miniconda](https://docs.conda.io/en/latest/miniconda.html) or a bigger `conda` version, all of them already contain `Python`, the programming language we will use, and [pip](https://pip.pypa.io/en/stable/installation/), a package manager we will need, and
 + `Docker`, for the containarization, in Ubuntu one just run the following in a shell: `sudo apt-get install docker.io`
+
 and we will show below how to install the other packages we need.
 
 ## Folder content 
