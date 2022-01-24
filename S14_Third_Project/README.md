@@ -1,12 +1,14 @@
 # Heart Failure project description 
  
+[![NBViewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/MMdeCastro/ml-zoomcamp/blob/main/S14_Third_Project/Heart_Failure.ipynb)
+
 Goal
 
-We want to predict the risk of suffering a heart failure on patients by knowning if they suffer hypertension, diabetes, high cholesterol levels,... and other features, as age or sex, which are considered as potential risk factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
+We want to predict the risk of suffering a heart failure on patients by knowning if their blood presure, diabetes, cholesterol,... levels and other features, as age or sex, which are considered as potential risk factors in the detection of cardiovascular diseases. The conclusions of analysis like this one might help in early detection, the design of prevention campaigns, and understanding controversial diagnosis.
 
 Method
 
-We will automate the task using the most popular classification models. Most of the work is related to the data preparation, the tuning of the model parameters, and the evaluation of the model performance. 
+We will automate the task using the most popular classification models. Most of the work is related to the data preparation, the tuning of the model parameters, and the evaluation of the model performance. Find more info in the `Heart_Failure.ipynb` Jupyter Notebook.
 
 Data
 
