@@ -24,15 +24,15 @@ and we will show below how to install the other packages we need.
 ## Folder content 
 
 <ul>
-<li> environment.yml -> the file with the packages we need 
-<li> heart.csv -> the dataset we use to train the models</li>
-<li> Heart_Failure.ipynb -> the Jupyter Notebook with the Exploratory Data Analysis and the Model Selection </li>
-<li> train.py -> to train the final model and save it with the package 'pickle' to the file model_RF_t=04.bin</li>
-<li> model_RF_t=04.bin -> the final model, in case you do not want to generate it yourself by running 'python train.py'
-<li> predict.py -> to load the model and deploy it with the package 'Flask' in a web service</li>
-<li> predict_test.py -> to test the web service locally </li>
-<li> Pipfile and Pipfile.lock -> for the virtual environment using pipenv </li>
-<li> Dockerfile -> the info the package 'Docker' needs to create the container </li>
+<li> heart.csv -> the dataset we use to train the models,</li>
+<li> Heart_Failure.ipynb -> the Jupyter Notebook with the Exploratory Data Analysis and the Model Selection, </li>
+<li> train.py -> to train the final model and save it with the package 'pickle' to the file 'model_RF_t=04.bin',</li>
+<li> model_RF_t=04.bin -> the final model, in case you do not want to generate it yourself (see below),</li>
+<li> predict.py -> to load the model and deploy it in a web service with the package 'Flask',</li>
+<li> predict_test.py -> to test the web service locally, </li>
+<li> Pipfile and Pipfile.lock -> for the virtual environment using the package 'pipenv',</li>
+<li> Dockerfile -> the info the package 'Docker' needs to create the container,</li>
+<li> environment.yml -> the file with all the dependencies we need in the project </li>
 </ul>
 
 
