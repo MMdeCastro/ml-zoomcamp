@@ -15,24 +15,21 @@ We use the dataset available in the Kaggle database: Kaggle Heart Failure Predic
 Clone the repo to your computer and navigate to this project folder (see the folder content below). 
 
 Beside the dependencies indicated in the `environment.yml` file (we will show how to install them below), you need to have installed:
-+ [miniconda](https://docs.conda.io/en/latest/miniconda.html) or a bigger `conda` version, all of them already contain `Python`, the programming language we will use, and [pip](https://pip.pypa.io/en/stable/installation/), a package manager we will need
-+ [pipenv](https://pypi.org/project/pipenv/) to create the environment for the Docker container, and
-+ `Docker`, for the containarization, in Ubuntu one just run the following in a shell:
-
-+ `sudo apt-get install docker.io`
++ [miniconda](https://docs.conda.io/en/latest/miniconda.html) or a bigger `conda` version, all of them already contain `Python`, the programming language we will use, and [pip](https://pip.pypa.io/en/stable/installation/), a package manager we will need, and
++ `Docker`, for the containarization, in Ubuntu one just run the following in a shell: `sudo apt-get install docker.io`
 
 ## Folder content 
 
 <ul>
-<li> `environment.yml` -> the file with the packages we need 
-<li> `heart.csv` -> the dataset we use to train the models</li>
-<li> `Heart_Failure.ipynb` -> the Jupyter Notebook with the Exploratory Data Analysis and the Model Selection </li>
-<li> `train.py` -> to train the final model and save it with pickle to the file model_RF_t=04.bin</li>
-<li> `model_RF_t=04.bin` -> the final model, in case you do not want to save it yourself by running `train.py`
-<li> `predict.py` -> to load the model and deploy it in a web service</li>
-<li> `predict_test.py` -> to test the web service locally </li>
-<li> `Pipfile` and `Pipfile.lock` -> for the virtual environment using pipenv </li>
-<li> `Dockerfile` -> the info `Docker` need to create the container </li>
+<li> environment.yml -> the file with the packages we need 
+<li> heart.csv -> the dataset we use to train the models</li>
+<li> Heart_Failure.ipynb -> the Jupyter Notebook with the Exploratory Data Analysis and the Model Selection </li>
+<li> train.py` -> to train the final model and save it with pickle to the file model_RF_t=04.bin</li>
+<li> model_RF_t=04.bin -> the final model, in case you do not want to generate it yourself by running `python train.py`
+<li> predict.py -> to load the model and deploy it in a web service</li>
+<li> predict_test.py -> to test the web service locally </li>
+<li> Pipfile and Pipfile.lock -> for the virtual environment using pipenv </li>
+<li> Dockerfile -> the info `Docker` need to create the container </li>
 </ul>
 
 
@@ -64,7 +61,7 @@ When you are finished with the notebook, press 'Quit' in the Jupyter (top right 
 
 ## Generate the model file
 
-Everything in the following will take place wth the `conda` environment activated, and still in the folder where you cloned the Heart Failure Prediction project, run in the shell:
+Everything in the following should take place within the `conda` environment 'heart' activated, and still in the folder where you cloned the Heart Failure Prediction project, run in the shell:
 
 + `python train.py`
 
@@ -92,21 +89,25 @@ We do not need to install packages, activate environments, train models,... ever
 
 + `sudo apt-get install docker.io`
 
-A `Pipfile` and a `Pipfile.lock` are already in the folder you cloned. Here we explain how we have created that files, therefore you do not have to reproduce the following 2 command lines. We have used `Pipenv` to create the `Pipfile` and the `Pipfile.lock` that record the info of the packages we need to have inside the container. 
+A `Pipfile` and a `Pipfile.lock` are already in the folder you cloned, we need them to populate the Docker container. Here we explain how we have created that files, therefore you do not have to reproduce the following 3 command lines. We have used `Pipenv` to create the `Pipfile` and the `Pipfile.lock` that record the info of the packages we need to have inside the container. We have installed [pipenv](https://pypi.org/project/pipenv/) in the conda environment 'heart' by running in the shell:
+
++ `pip install pipenv` (you do not have to run this because you already have the `Pipfile` and `Pipfile.lock` files)
 
 We activated the `pipenv` environment (it takes the name of the project folder you are) by running in the folder shell (inside the `conda` environment):
 
-+ `pipenv shell` (you do not have to run this because you already have the files)
++ `pipenv shell` (you do not have to run this because you already have the `Pipfile` and `Pipfile.lock` files)
 
 and then we installed the packages we need in the container by running:
 
-+ `pipenv install numpy scikit-learn==1.00 flask gunicorn` (you do not have to run this because you already have the files)
++ `pipenv install numpy scikit-learn==1.00 flask gunicorn` (you do not have to run this because you already have the `Pipfile` and `Pipfile.lock` files)
 
 and we went out of the `pipenv` environment with 'Crt + d'.
 
-With the `Pipfile` and `Pipfile.lock` we are ready to create a Docker image, please, follow the step below:
+With the `Pipfile` and `Pipfile.lock` we are ready to create a Docker image. 
 
-Run in the shell (the enviroment does not need to be activated):
+Please, follow the step below:
+
+in a new shell (neither the conda 'heart', nor the pipenv enviroments need to be activated, just be in the project folder), run:
 
 + `docker run -it --rm --entrypoint=bash python:3.8.12-slim`
 
