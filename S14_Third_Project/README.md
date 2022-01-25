@@ -12,13 +12,13 @@ We will automate the task using the most popular machine learning models for cla
 
 Data
 
-We use the dataset available in the Kaggle database: Kaggle Heart Failure Prediction Dataset (citation: fedesoriano. (September 2021) Heart Failure Prediction Dataset)
+We use the dataset available in the Kaggle database: Kaggle Heart Failure Prediction Dataset (citation: fedesoriano. (September 2021) Heart Failure Prediction Dataset). Find more info in the `Heart_Failure.ipynb` Jupyter Notebook (click on the nbviewer icon above for a faster renderization).
 
 Clone the repo to your computer and navigate to this project folder (see the folder content below). 
 
 You need to have installed:
 + [miniconda](https://docs.conda.io/en/latest/miniconda.html) or a bigger `conda` version, all of them already contain `Python`, the programming language we will use, and [pip](https://pip.pypa.io/en/stable/installation/), a package manager we will need, and
-+ `Docker`, for the containarization, in Ubuntu one just run the following in a shell: `sudo apt-get install docker.io`
++ `Docker` for the containarization, in Ubuntu one just run the following in a shell: `sudo apt-get install docker.io`
 
 and we will show below how to install the other packages we need.
 
@@ -59,7 +59,7 @@ Once the 'heart' `conda` environment is activated, run in the shell:
 
 + `jupyter notebook` 
 
-and Jupyter will open in your browser, enable 'Collapsible headings' in the Nbextensions menu (see the Jupyter toolbar) and then click on the Jupyter Notebook `Heart_Failure.ipynb`. It will open in your browser. Then follow the instructions in the Jyputer Notebook. 
+and Jupyter will open in your browser, enable 'Collapsible headings' in the Nbextensions menu (see the Jupyter toolbar) and if you are not already there, find the project folder. Then click on the Jupyter Notebook `Heart_Failure.ipynb`. It will open in your browser. Then follow the instructions in the Jupyter Notebook. 
 
 When you are finished with the notebook, press 'Quit' in the Jupyter (top right corner) or `Ctrl + c` in the shell, and Jupyter will be closed.
 
@@ -87,9 +87,7 @@ Close the web server with 'Ctrl + c'.
 
 ## Docker container
 
-We do not need to install packages, activate environments, train models,... everytime we want to know if a new patient is in risk of suffering a heart failure. We can skip the former sections using a Docker container. To install docker, if you have not done it yet, run in another shell (not in an environment shell):
-
-+ `sudo apt-get install docker.io`
+We do not need to install packages, activate environments, train models,... everytime we want to know if a new patient is in risk of suffering a heart failure. We can skip the former sections using a `Docker` container. 
 
 A `Pipfile` and a `Pipfile.lock` are already in the folder you cloned, we use them to populate the Docker container. Here we explain how we have created that files, therefore you do not have to reproduce the following 3 command lines. We have used `Pipenv` to create the `Pipfile` and the `Pipfile.lock` that record the info of the packages we need to have inside the container. We have installed [pipenv](https://pypi.org/project/pipenv/) in the conda environment 'heart' by running in the shell:
 
